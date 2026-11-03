@@ -6,7 +6,7 @@ Páginas dos materiais que vão no direct pela automação de comentário (skill
 
 1. Copie a pasta `_modelo/` com o nome do material, curto e sem acento (ex.: `prompt-fotos/`).
 2. Troque tudo que está entre `{{ }}` no `index.html` dela.
-3. Publique (commit e push). O endereço fica `https://{usuario}.github.io/{pasta}/`.
+3. Publique (commit e push). O endereço fica `https://lucastadeu357.github.io/materiais/{pasta}/`.
 4. Esse endereço é o botão do direct na automação.
 
 ## Regras
