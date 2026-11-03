@@ -1,0 +1,159 @@
+/* Visual do perfil: creme, preto e vermelho (o mesmo dos carrosséis) */
+:root {
+  --creme: #F1EEE8;
+  --papel: #FBFAF7;
+  --linha: #D9D6D1;
+  --preto: #111111;
+  --cinza: #8A8A8A;
+  --vermelho: #E5161F;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--preto);
+  font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 18px 56px;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.topo a { color: var(--preto); text-decoration: none; }
+
+.etiqueta {
+  display: inline-block;
+  margin-top: 36px;
+  padding: 4px 10px;
+  background: var(--preto);
+  color: var(--creme);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 14px 0 12px;
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 11vw, 64px);
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+h1 em, h2 em { font-style: normal; color: var(--vermelho); }
+
+.intro { margin: 0 0 28px; font-size: 18px; }
+
+h2 {
+  margin: 40px 0 12px;
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+ol.passos { margin: 0; padding-left: 22px; }
+ol.passos li { margin-bottom: 8px; }
+ol.passos li::marker { font-weight: 800; color: var(--vermelho); }
+
+/* Caixa do prompt, com botão de copiar */
+.prompt {
+  margin: 16px 0;
+  background: var(--papel);
+  border: 2px solid var(--preto);
+}
+.prompt-cabeca {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--preto);
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.prompt pre {
+  margin: 0;
+  padding: 14px 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, monospace;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.copiar {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 0;
+  background: var(--vermelho);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.copiar.ok { background: var(--preto); }
+
+.dica {
+  margin: 24px 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--vermelho);
+  background: var(--papel);
+}
+
+figure { margin: 20px 0; }
+figure img { width: 100%; height: auto; display: block; border: 2px solid var(--preto); }
+figcaption { margin-top: 6px; font-size: 14px; color: var(--cinza); }
+
+/* Bloco de oferta: fica escondido até ter produto */
+.oferta {
+  margin: 44px 0 0;
+  padding: 22px 18px;
+  background: var(--preto);
+  color: var(--creme);
+}
+.oferta h2 { margin-top: 0; color: var(--creme); }
+.oferta .botao { background: var(--vermelho); }
+
+.botao {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 14px 20px;
+  background: var(--preto);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.rodape {
+  margin-top: 56px;
+  padding-top: 18px;
+  border-top: 2px solid var(--preto);
+  font-size: 14px;
+}
+.rodape a { color: var(--preto); font-weight: 800; }
