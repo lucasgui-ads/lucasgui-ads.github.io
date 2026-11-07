@@ -150,6 +150,40 @@ figcaption { margin-top: 6px; font-size: 14px; color: var(--cinza); }
   letter-spacing: .04em;
 }
 
+/* Página longa de treinamento: índice e blocos de etapa */
+.indice {
+  margin: 8px 0 0;
+  padding: 16px 18px;
+  background: var(--papel);
+  border: 2px solid var(--preto);
+}
+.indice ol { margin: 6px 0 0; padding-left: 22px; }
+.indice a { color: var(--preto); }
+
+h3 {
+  margin: 28px 0 6px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.modulo {
+  margin: 18px 0;
+  padding: 16px 16px 6px;
+  background: var(--papel);
+  border-left: 4px solid var(--preto);
+}
+.modulo h3 { margin-top: 0; }
+.modulo .faz { margin: 0 0 10px; color: var(--cinza); font-size: 15px; }
+
+code {
+  font-family: ui-monospace, "Cascadia Mono", Menlo, monospace;
+  font-size: .9em;
+  background: var(--papel);
+  padding: 1px 5px;
+  border: 1px solid var(--linha);
+  word-break: break-word;
+}
+
 .rodape {
   margin-top: 56px;
   padding-top: 18px;

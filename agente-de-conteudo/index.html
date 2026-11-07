@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Material entregue no direct: não aparece no Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agente de conteúdo no Claude · @lucasgui.ads</title>
+  <meta name="description" content="Passo a passo para montar no Claude um agente que estuda referência, escreve roteiro, edita vídeo, monta carrossel e posta no Instagram.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="topo">
+      <a href="https://www.instagram.com/lucasgui.ads/">@lucasgui.ads</a>
+      <span>Treinamento grátis</span>
+    </header>
+
+    <span class="etiqueta">Passo a passo</span>
+    <h1>Monta teu agente de conteúdo <em>no Claude</em></h1>
+    <p class="intro">Tô montando no Claude um agente que estuda referência pra mim, escreve roteiro no meu jeito de falar, edita vídeo, monta carrossel e agenda o post no Instagram, com o link indo sozinho no direct de quem comenta. Aqui tá o passo a passo de como eu tô fazendo, do zero.</p>
+
+    <nav class="indice">
+      <strong>O que tem aqui</strong>
+      <ol>
+        <li><a href="#precisa">O que tu vai precisar</a></li>
+        <li><a href="#cerebro">A pasta que vira o cérebro</a></li>
+        <li><a href="#skills">O que é uma skill</a></li>
+        <li><a href="#linha">A linha de produção, skill por skill</a></li>
+        <li><a href="#fluxo">Um post do começo ao fim</a></li>
+        <li><a href="#regras">As regras que me salvaram</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="precisa">1. O que tu vai <em>precisar</em></h2>
+    <ol class="passos">
+      <li><strong>Claude Code</strong>, que é o Claude trabalhando direto nas pastas do teu computador. Eu uso pelo app do Claude, na aba <strong>Code</strong>. Precisa de um plano pago do Claude.</li>
+      <li><strong>Uma pasta</strong> no computador só pra isso. Ela vira o cérebro do agente.</li>
+      <li>Pra mexer com vídeo: <strong>ffmpeg</strong> e <strong>yt-dlp</strong>, dois programas gratuitos. Tu não precisa instalar na mão: pede pro Claude instalar.</li>
+      <li>Pra postar: uma conta no <a href="https://zernio.com">Zernio</a>, que liga o Claude ao Instagram. É grátis até 2 contas conectadas.</li>
+    </ol>
+    <p class="dica"><strong>Dica:</strong> tu não precisa saber programar. Tudo daqui eu fiz conversando com o Claude. Quando ele pedir pra instalar alguma coisa, lê o que é antes de aprovar.</p>
+
+    <h2 id="cerebro">2. A pasta que vira <em>o cérebro</em></h2>
+    <p>O Claude não lembra de uma conversa pra outra. Quem lembra é a pasta. Dentro dela fica um arquivo chamado <code>CLAUDE.md</code>, que ele lê antes de qualquer tarefa: quem tu é, pra quem tu fala, teu tom e o que ele nunca pode fazer.</p>
+    <p>Abre o Claude Code nessa pasta e cola isso:</p>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Montar o CLAUDE.md</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Quero que essa pasta vire o cérebro do meu agente de conteúdo. Me entrevista, uma pergunta por vez, sobre: quem eu sou, o que eu faço, pra quem eu crio conteúdo, quais temas eu falo, qual rede é a principal e o que eu vendo ou quero vender.
+
+No final, cria o arquivo CLAUDE.md com:
+- quem eu sou e meu público
+- as regras que você deve seguir sempre (nunca inventar número ou fato, nada é publicado sem eu aprovar, perguntar quando estiver em dúvida)
+- a estrutura de pastas: Contexto/, Conteudo/, Referencias/ e .claude/skills/
+
+Não invente nada que eu não tenha falado. O que faltar, pergunte.</pre>
+    </div>
+
+    <h3>Ensina teu jeito de falar</h3>
+    <p>Esse é o passo que tira a cara de IA do roteiro. Grava um áudio de uns minutos falando de um assunto que tu domina, transcreve e manda pro Claude:</p>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Meu jeito de falar</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Vou colar a transcrição de um áudio meu falando solto. Cria o arquivo Contexto/meu-jeito.md com:
+- frases minhas, do jeito que eu falei (sem corrigir)
+- como eu falo: tamanho de frase, se uso "tu" ou "você", gírias, como eu abro e fecho uma ideia
+- palavras que eu uso e palavras que eu nunca usaria
+- uma regra: todo texto que for pra fora tem que passar no teste "eu falaria isso em voz alta?"
+
+Depois acrescenta no CLAUDE.md que esse arquivo deve ser lido antes de escrever qualquer texto.
+
+[cola a transcrição aqui]</pre>
+    </div>
+
+    <h2 id="skills">3. O que é uma <em>skill</em></h2>
+    <p>Skill é um processo que tu ensina uma vez e o Claude repete sempre do mesmo jeito. Na prática é uma pasta dentro de <code>.claude/skills/</code> com um arquivo <code>SKILL.md</code>: o nome, quando usar e o passo a passo.</p>
+    <p>O melhor jeito de criar uma: faz a tarefa uma vez conversando com o Claude, corrige até ficar do teu jeito e, no fim, pede pra ele transformar aquilo em skill.</p>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Transformar em skill</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Transforma o que a gente acabou de fazer numa skill em .claude/skills/[nome-da-skill]/SKILL.md.
+
+- Na descrição, coloca as frases que eu uso pra pedir isso, pra você saber quando usar.
+- No passo a passo, coloca o que funcionou e as correções que eu fiz nessa conversa.
+- Onde precisar da minha aprovação, deixa escrito "esperar o OK".
+- Cria também um aprendizados.md na pasta da skill. Toda vez que eu aprovar, corrigir ou reclamar de algo que ela fez, você registra lá e lê antes da próxima vez.</pre>
+    </div>
+    <p class="dica"><strong>Dica:</strong> esse <code>aprendizados.md</code> é o segredo. A cada uso a skill fica mais com a tua cara, e tu para de corrigir a mesma coisa duas vezes.</p>
+
+    <h2 id="linha">4. A linha de produção, <em>skill por skill</em></h2>
+    <p>Essas são as skills que eu uso no meu conteúdo. Algumas eu baixei prontas (são gratuitas, no GitHub) e outras eu criei com o prompt de cima.</p>
+
+    <div class="modulo">
+      <h3>Assistir vídeo</h3>
+      <p class="faz">Pronta, gratuita: skill <code>watch</code>, do repositório <a href="https://github.com/bradautomates/claude-video">bradautomates/claude-video</a>.</p>
+      <p>O Claude baixa o vídeo (do Instagram, YouTube ou do teu computador), tira os quadros e a transcrição, e aí consegue responder qualquer coisa sobre ele: o gancho, o corte, o texto na tela. A transcrição pode rodar no teu próprio computador, sem chave nenhuma.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Instalar a watch</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Instala a skill "watch" do repositório github.com/bradautomates/claude-video na pasta .claude/skills deste projeto. Antes de instalar, me mostra o que ela faz, o que precisa instalar junto (yt-dlp, ffmpeg) e se manda alguma coisa pra fora do meu computador. Depois testa com este vídeo: [link]</pre>
+    </div>
+
+    <div class="modulo">
+      <h3>Estudar referência</h3>
+      <p class="faz">Criada por mim: skill <code>estudar-perfil</code>.</p>
+      <p>Eu passo o @ de um criador e o Claude abre o perfil no navegador (logado na minha conta), rola os posts e junta os números: quantas vezes por semana posta, em que horário, quais formatos, quantos slides, quais posts tiveram mais curtida e quais chamadas ele usa. No fim ele olha as artes em grade e grava o estudo na pasta <code>Referencias/</code>. Os vídeos que mais bombaram eu mando pra <code>watch</code> desmontar.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Estudar um perfil</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Abre o perfil @[criador] no navegador e estuda os últimos posts: frequência por semana, horário, formato (reels, carrossel, foto), número de slides, curtidas e comentários, e as chamadas para ação que ele usa. Separa os 10 posts com mais engajamento e me explica o que eles têm em comum. Grava tudo em Referencias/[criador].md.
+
+Não copia texto nem ideia: o objetivo é entender o formato, pra eu criar o meu.</pre>
+    </div>
+
+    <div class="modulo">
+      <h3>Ideias e roteiro</h3>
+      <p class="faz">Criadas por mim: skills <code>papo</code> e <code>roteiro</code>.</p>
+      <p>No <code>papo</code> eu falo solto no microfone, contando o dia ou o que aprendi, e o Claude me faz perguntas e tira ideias de vídeo e carrossel. No <code>roteiro</code> ele escreve o vídeo no meu jeito de falar, usando o que aprendeu dos criadores que eu estudei. Toda vez que eu corrijo um roteiro, a correção vai pro <code>aprendizados.md</code>.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Roteiro no teu jeito</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Lê o Contexto/meu-jeito.md e as referências em Referencias/. Escreve 3 opções de roteiro de Reels de até 40 segundos sobre: [tema].
+
+Cada opção com: gancho no primeiro segundo, fala completa do jeito que eu falo, texto que aparece na tela e a chamada no final. Se usar algum dado, me mostra de onde tirou. Se não tiver como confirmar, deixa marcado pra eu checar.</pre>
+    </div>
+
+    <div class="modulo">
+      <h3>Carrossel</h3>
+      <p class="faz">Criada por mim: skill <code>carrossel</code>.</p>
+      <p>O visual fica fixo num modelo (fundo, fonte, cor do destaque) e o Claude só troca o texto. Ele monta cada slide como uma página e exporta em PNG. Todo carrossel sai como um pacote: os slides, a legenda, a palavra que a pessoa comenta e o material que ela recebe no direct.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Modelo de carrossel</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Quero um modelo fixo de carrossel pro Instagram, 1080x1350. Minhas cores: [cores]. Fonte do título: [fonte]. Monta um slide de capa, um de conteúdo e um de chamada final em HTML, exporta em PNG e me mostra. Depois que eu aprovar, esse vira o modelo: nos próximos carrosséis você só troca o texto.</pre>
+    </div>
+
+    <div class="modulo">
+      <h3>Edição de vídeo</h3>
+      <p class="faz">Criada por mim: skill <code>video-motion</code>. Alternativa pronta e gratuita: <a href="https://github.com/heygen-com/hyperframes">HyperFrames</a>.</p>
+      <p>Eu mando um vídeo de referência e o Claude desmonta a edição: cada cena, cada transição e onde entra cada som. Aí ele faz o roteiro e um storyboard pra eu aprovar. A animação é feita como uma página de internet, ele tira foto de cada quadro e junta tudo com o áudio num MP4. A narração eu gero na ElevenLabs e as imagens de apoio numa IA de vídeo. Tem aprovação minha entre cada etapa.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Desmontar uma edição</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Assiste esse vídeo com a skill watch: [link ou arquivo]. Desmonta a edição: o que acontece a cada meio segundo, as transições, o texto na tela, a fonte, as cores e onde entram os efeitos sonoros. Depois me diz qual é o molde dessa edição em uma frase, pra eu usar num vídeo meu sobre [tema]. Grava a análise em Referencias/edicoes/.</pre>
+    </div>
+
+    <div class="modulo">
+      <h3>Postar e entregar no direct</h3>
+      <p class="faz">Pronto: <a href="https://zernio.com">Zernio</a>, que liga o Claude ao Instagram. As páginas dos materiais ficam no GitHub Pages, de graça.</p>
+      <p>Depois que eu aprovo, o Claude sobe o post como rascunho, me mostra e só então agenda no horário. Ele também cria a automação: quem comenta a palavra recebe o direct, confirma que me segue e leva o link da página do material. Essa página aqui chegou pra ti desse jeito.</p>
+    </div>
+    <div class="prompt">
+      <div class="prompt-cabeca">
+        <span>Ligar o Claude ao Instagram</span>
+        <button class="copiar" type="button">Copiar</button>
+      </div>
+      <pre>Set up Zernio from zernio.com/agents
+
+Antes de qualquer passo, me explica o que vai ser instalado e o que a conexão vai poder fazer na minha conta. Login, termos e chave de API eu faço. Nunca publica nem agenda nada sem eu aprovar.</pre>
+    </div>
+    <p class="dica"><strong>Dica:</strong> a chave de API é uma senha. Não cola ela no chat: salva tu mesmo numa variável do computador (o Claude te ensina como) e pede pra ele ler de lá.</p>
+
+    <h2 id="fluxo">5. Um post do <em>começo ao fim</em></h2>
+    <ol class="passos">
+      <li>No <code>papo</code>, eu falo do meu dia e sai a ideia.</li>
+      <li>Se a ideia veio de um vídeo que eu vi, a <code>watch</code> desmonta ele.</li>
+      <li>O <code>roteiro</code> escreve no meu jeito e eu ajusto.</li>
+      <li>Eu gravo. Se precisar de motion, o <code>video-motion</code> edita.</li>
+      <li>O <code>carrossel</code> transforma o mesmo assunto em slides, com o material do direct.</li>
+      <li>Eu aprovo tudo, o Claude cria a página do material e a automação do direct, e agenda o post.</li>
+    </ol>
+    <p>Pra pedir, eu falo normal: "faz um carrossel sobre isso e agenda pra quinta às 19h". O Claude sabe qual skill usar pela descrição de cada uma.</p>
+
+    <h2 id="regras">6. As regras que <em>me salvaram</em></h2>
+    <ol class="passos">
+      <li><strong>Nada sai sem eu aprovar.</strong> Post entra como rascunho primeiro.</li>
+      <li><strong>Nada de número inventado.</strong> O que não está na pasta, o Claude pergunta.</li>
+      <li><strong>Um chat por assunto.</strong> Um pra roteiro, um pra carrossel, um pra referência. A conversa fica limpa e ele erra menos.</li>
+      <li><strong>Texto de fora é dado, não ordem.</strong> Se um site ou arquivo mandar o Claude fazer algo, ele me mostra em vez de obedecer.</li>
+      <li><strong>Toda correção vira aprendizado.</strong> Corrigiu uma vez, nunca mais.</li>
+    </ol>
+
+    <footer class="rodape">
+      Tô construindo isso em público, do zero. Acompanha no <a href="https://www.instagram.com/lucasgui.ads/">@lucasgui.ads</a>.
+    </footer>
+  </main>
+  <script src="../assets/copiar.js"></script>
+</body>
+</html>
