@@ -1,4 +1,4 @@
-# Materiais do @lucasgui.ads
+# Materiais do @lucastadeu357
 
 Páginas dos materiais que vão no direct pela automação de comentário (skill `automacao-direct` do cérebro). Publicado no GitHub Pages.
 
